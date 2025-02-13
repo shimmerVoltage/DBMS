@@ -18,9 +18,25 @@ BEGIN
 		PRINT(DATENAME(WEEKDAY, @date));
 		PRINT(@lesson);		
 		PRINT(@time);
+
+		IF NOT EXISTS (SELECT * FROM Schedule WHERE [group] = @group AND discipline = @discipline AND [date] = @date AND [time] = @time)
+		BEGIN
+			INSERT Schedule
+					([group], discipline, teacher, [date], [time], spent)
+			VALUES	(@group, @discipline, @teacher, @date, @time, IIF(@date < GETDATE(), 1, 0));
+		END
+
 		SET @lesson = @lesson + 1;
 		PRINT(@lesson);		
 		PRINT(DATEADD(MINUTE, 95, @time));
+		
+		IF NOT EXISTS (SELECT * FROM Schedule WHERE [group] = @group AND discipline = @discipline AND [date] = @date AND [time] = DATEADD(MINUTE, 95, @time))
+		BEGIN
+			INSERT Schedule
+					([group], discipline, teacher, [date], [time], spent)
+			VALUES	(@group, @discipline, @teacher, @date, DATEADD(MINUTE, 95, @TIME), IIF(@date < GETDATE(), 1, 0));
+		END
+
 		SET @lesson = @lesson + 1;
 		PRINT('----------------------------');
 		IF (DATEPART(WEEKDAY, @date) = 6)
