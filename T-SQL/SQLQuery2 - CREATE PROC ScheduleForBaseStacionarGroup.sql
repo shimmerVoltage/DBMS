@@ -82,7 +82,7 @@ BEGIN
 		BEGIN
 			PRINT('IIF:');
 			PRINT(DATEPART(WEEKDAY, @date));
-			SET @date = IIF(@current_week_present = 1, DATEADD(WEEK, @rr_interval, @date), DATEADD(DAY, @ra_interval, @date));
+			SET @date = IIF(@current_week_present = 1, DATEADD(DAY, @rr_interval, @date), DATEADD(DAY, @ra_interval, @date));
 			--SET @date = IIF(@current_week_present = 1, DATEADD(WEEK, 7, @date), DATEADD(DAY, 5, @date));
 			SET @current_week_present = IIF(@current_week_present = 1, 0, 1);
 		END
