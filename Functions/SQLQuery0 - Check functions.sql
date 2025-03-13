@@ -11,4 +11,5 @@ GO
 --PRINT(dbo.GetHolidaysDuration(N'23%'));
 --
 --PRINT(dbo.GetHolidayStartDate(N'8%', 2025));
-PRINT(dbo.GetEasterDate(2003));
+PRINT(dbo.GetEasterDate(2004));
+PRINT(dbo.GetLastDateForGroup(N'PV_319'));
