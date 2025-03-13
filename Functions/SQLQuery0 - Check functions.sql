@@ -13,3 +13,5 @@ GO
 --PRINT(dbo.GetHolidayStartDate(N'8%', 2025));
 PRINT(dbo.GetEasterDate(2004));
 PRINT(dbo.GetLastDateForGroup(N'PV_319'));
+PRINT(dbo.GetMaxLearningDayFor(N'PV_319'));
+--EXEC sp_GetMaxLearningDayFor N'PV_319';
